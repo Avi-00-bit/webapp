@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StatLearn AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         LOGIN SCREEN
+    ====================================================== -->
+
+    <div class="auth-screen" id="authScreen">
+
+        <div class="auth-left">
+
+            <div class="auth-brand">
+                <div class="brand-logo">S</div>
+                <h1>StatLearn AI</h1>
+            </div>
+
+            <div class="auth-hero">
+
+                <span class="ai-badge">
+                    ✦ AI-POWERED LEARNING
+                </span>
+
+                <h2>
+                    Learn smarter.<br>
+                    Build stronger competencies.
+                </h2>
+
+                <p>
+                    Identify your competency gaps, receive personalized
+                    learning recommendations and practice with AI-generated
+                    quizzes.
+                </p>
+
+                <div class="auth-features">
+
+                    <div>
+                        <span>✓</span>
+                        Competency Assessment
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Personalized Learning
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        AI Quiz Generation
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Learning Analytics
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="auth-right">
+
+            <div class="login-card" id="loginCard">
+
+                <div class="mobile-brand">
+                    <div class="brand-logo">S</div>
+                    <strong>StatLearn AI</strong>
+                </div>
+
+                <div class="auth-heading">
+
+                    <h2>Welcome back</h2>
+
+                    <p>
+                        Sign in to continue your learning journey.
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="label-row">
+
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <a href="#" onclick="forgotPassword(event)">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                onclick="togglePassword('loginPassword', this)"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="auth-error"
+                        id="loginError"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary auth-btn"
+                    >
+                        Sign In
+                    </button>
+
+                </form>
+
+
+                <div class="demo-login">
+
+                    <strong>Demo Login</strong>
+
+                    <p>
+                        Email: student@statlearn.ai
+                    </p>
+
+                    <p>
+                        Password: 123456
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="fillDemoLogin()"
+                    >
+                        Use Demo Account
+                    </button>
+
+                </div>
+
+
+                <div class="auth-switch">
+
+                    Don't have an account?
+
+                    <button
+                        onclick="showSignup()"
+                    >
+                        Create account
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIGN UP -->
+
+            <div
+                class="login-card signup-card"
+                id="signupCard"
+            >
+
+                <div class="mobile-brand">
+                    <div class="brand-logo">S</div>
+                    <strong>StatLearn AI</strong>
+                </div>
+
+                <div class="auth-heading">
+
+                    <h2>Create account</h2>
+
+                    <p>
+                        Start your personalized learning journey.
+                    </p>
+
+                </div>
+
+
+                <form id="signupForm">
+
+                    <div class="form-group">
+
+                        <label for="signupName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="signupName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Create a password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="auth-error"
+                        id="signupError"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary auth-btn"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <div class="auth-switch">
+
+                    Already have an account?
+
+                    <button
+                        onclick="showLogin()"
+                    >
+                        Sign in
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+
+    <div
+        class="app"
+        id="app"
+    >
+
+        <!-- SIDEBAR -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    S
+                </div>
+
+                <div>
+                    <h2>StatLearn AI</h2>
+                    <small>AI LEARNING PLATFORM</small>
+                </div>
+
+            </div>
+
+
+            <nav class="navigation">
+
+                <div class="nav-section">
+                    MAIN
+                </div>
+
+
+                <button
+                    class="nav-item active"
+                    data-page="dashboard"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="assessment"
+                >
+                    <span class="nav-icon">✓</span>
+                    <span>Competency Assessment</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="quiz"
+                >
+                    <span class="nav-icon">✦</span>
+                    <span>AI Quiz Generator</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="recommendations"
+                >
+                    <span class="nav-icon">◈</span>
+                    <span>Recommendations</span>
+                </button>
+
+
+                <div class="nav-section">
+                    LEARNING
+                </div>
+
+
+                <button
+                    class="nav-item"
+                    data-page="learning"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>My Learning</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-page="analytics"
+                >
+                    <span class="nav-icon">▥</span>
+                    <span>Analytics</span>
+                </button>
+
+
+                <div class="nav-section">
+                    ECOSYSTEM
+                </div>
+
+
+                <button
+                    class="nav-item"
+                    data-page="igot"
+                >
+                    <span class="nav-icon">◎</span>
+                    <span>iGOT Karmayogi</span>
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <div class="user-profile">
+
+                    <div
+                        class="avatar"
+                        id="sidebarAvatar"
+                    >
+                        AL
+                    </div>
+
+                    <div>
+
+                        <strong id="sidebarName">
+                            Alex Learner
+                        </strong>
+
+                        <span id="sidebarEmail">
+                            Statistical Learner
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="logout-btn"
+                    onclick="logout()"
+                >
+                    ↪ Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="mobile-menu"
+                        id="mobileMenu"
+                    >
+                        ☰
+                    </button>
+
+                    <div>
+
+                        <h1 id="pageTitle">
+                            Dashboard
+                        </h1>
+
+                        <p>
+                            AI-powered competency development platform
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="system-status">
+
+                        <span></span>
+
+                        Platform Online
+
+                    </div>
+
+
+                    <div
+                        class="avatar"
+                        id="topAvatar"
+                    >
+                        AL
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+
+            <div class="content">
+
+
+                <!-- =================================================
+                     DASHBOARD
+                ================================================== -->
+
+                <section
+                    class="page active"
+                    id="dashboard"
+                >
+
+                    <div class="welcome-banner">
+
+                        <div class="welcome-content">
+
+                            <span class="ai-badge">
+                                ✦ AI LEARNING ASSISTANT
+                            </span>
+
+                            <h2 id="welcomeName">
+                                Welcome back, Learner 👋
+                            </h2>
+
+                            <p>
+                                Continue building your statistical
+                                competencies with personalized learning.
+                            </p>
+
+                        </div>
+
+
+                        <div class="welcome-graphic">
+
+                            <div class="graphic-circle">
+                                AI
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon blue">
+                                ◉
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Overall Competency
+                                </span>
+
+                                <strong
+                                    class="stat-value"
+                                    id="overallCompetency"
+                                >
+                                    72%
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon green">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Quiz Accuracy
+                                </span>
+
+                                <strong
+                                    class="stat-value"
+                                    id="quizAccuracy"
+                                >
+                                    81%
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon purple">
+                                ▣
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Courses Completed
+                                </span>
+
+                                <strong class="stat-value">
+                                    8
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-icon orange">
+                                ◷
+                            </div>
+
+                            <div>
+
+                                <span class="stat-label">
+                                    Learning Hours
+                                </span>
+
+                                <strong class="stat-value">
+                                    24h
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Competency Overview
+                            </h2>
+
+                            <p>
+                                Current competency profile based on
+                                assessment and learning activity.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick="navigate('assessment')"
+                        >
+                            Take Assessment
+                        </button>
+
+                    </div>
+
+
+                    <div class="dashboard-grid">
+
+                        <div class="card competency-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <h3>
+                                        Competency Profile
+                                    </h3>
+
+                                    <p>
+                                        Current skill levels
+                                    </p>
+
+                                </div>
+
+                                <span class="mini-badge">
+                                    AI Analysis
+                                </span>
+
+                            </div>
+
+
+                            <div class="competency-list">
+
+                                <div class="competency-row">
+
+                                    <div class="progress-header">
+
+                                        <strong>
+                                            Statistical Analysis
+                                        </strong>
+
+                                        <span>
+                                            78%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill"
+                                            style="width:78%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="competency-row">
+
+                                    <div class="progress-header">
+
+                                        <strong>
+                                            Data Visualization
+                                        </strong>
+
+                                        <span>
+                                            65%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill"
+                                            style="width:65%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="competency-row">
+
+                                    <div class="progress-header">
+
+                                        <strong>
+                                            Survey Methodology
+                                        </strong>
+
+                                        <span>
+                                            48%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill warning"
+                                            style="width:48%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="competency-row">
+
+                                    <div class="progress-header">
+
+                                        <strong>
+                                            Data Interpretation
+                                        </strong>
+
+                                        <span>
+                                            82%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill success"
+                                            style="width:82%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="competency-row">
+
+                                    <div class="progress-header">
+
+                                        <strong>
+                                            Data Quality
+                                        </strong>
+
+                                        <span>
+                                            56%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill warning"
+                                            style="width:56%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card gap-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <h3>
+                                        Competency Status
+                                    </h3>
+
+                                    <p>
+                                        AI identified areas
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="gap-list">
+
+                                <div class="gap-item">
+
+                                    <span class="gap-dot danger"></span>
+
+                                    <div>
+
+                                        <strong>
+                                            Survey Methodology
+                                        </strong>
+
+                                        <small>
+                                            Needs Improvement
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="gap-item">
+
+                                    <span class="gap-dot warning"></span>
+
+                                    <div>
+
+                                        <strong>
+                                            Data Quality
+                                        </strong>
+
+                                        <small>
+                                            Moderate
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="gap-item">
+
+                                    <span class="gap-dot success"></span>
+
+                                    <div>
+
+                                        <strong>
+                                            Data Interpretation
+                                        </strong>
+
+                                        <small>
+                                            Strong
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="gap-item">
+
+                                    <span class="gap-dot success"></span>
+
+                                    <div>
+
+                                        <strong>
+                                            Statistical Analysis
+                                        </strong>
+
+                                        <small>
+                                            Strong
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ASSESSMENT
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="assessment"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                Competency Assessment
+                            </h2>
+
+                            <p>
+                                Test your knowledge of the Official
+                                Statistical System.
+                            </p>
+
+                        </div>
+
+                        <span class="page-badge">
+                            10 Questions
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-banner">
+
+                        <span class="info-icon">
+                            ℹ
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Assessment Instructions
+                            </strong>
+
+                            <p>
+                                Select the most appropriate answer for
+                                each question. Your score will be used
+                                to identify competency gaps and
+                                personalize your learning path.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="assessmentQuestions"></div>
+
+
+                    <div class="submit-container">
+
+                        <button
+                            class="btn btn-primary btn-large"
+                            onclick="submitAssessment()"
+                        >
+                            Submit Assessment
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="card result-panel"
+                        id="assessmentResult"
+                    >
+
+                        <div class="result-main">
+
+                            <div
+                                class="score-circle"
+                                id="assessmentScoreCircle"
+                            >
+                                0%
+                            </div>
+
+                            <h2 id="assessmentResultTitle">
+                                Assessment Result
+                            </h2>
+
+                            <p id="assessmentResultText">
+                                Complete the assessment to view your result.
+                            </p>
+
+                        </div>
+
+
+                        <div class="result-section">
+
+                            <h3>
+                                Answer Review
+                            </h3>
+
+                            <div
+                                id="assessmentReview"
+                                class="answer-review"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="result-section">
+
+                            <h3>
+                                Identified Competency Gaps
+                            </h3>
+
+                            <div class="identified-gaps">
+
+                                <div class="identified-gap danger-bg">
+
+                                    <span>🔴</span>
+
+                                    <div>
+
+                                        <strong>
+                                            Survey Methodology
+                                        </strong>
+
+                                        <small>
+                                            Needs Improvement
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="identified-gap warning-bg">
+
+                                    <span>🟡</span>
+
+                                    <div>
+
+                                        <strong>
+                                            Data Quality
+                                        </strong>
+
+                                        <small>
+                                            Moderate
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="identified-gap success-bg">
+
+                                    <span>🟢</span>
+
+                                    <div>
+
+                                        <strong>
+                                            Statistical Analysis
+                                        </strong>
+
+                                        <small>
+                                            Strong
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="result-action">
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="navigate('recommendations')"
+                            >
+                                View Personalized Recommendations →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     QUIZ
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="quiz"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                AI Quiz Generator
+                            </h2>
+
+                            <p>
+                                Generate practice questions from
+                                learning materials.
+                            </p>
+
+                        </div>
+
+                        <span class="page-badge demo">
+                            AI Demo Mode
+                        </span>
+
+                    </div>
+
+
+                    <div class="card generator-card">
+
+                        <div
+                            class="upload-zone"
+                            id="uploadZone"
+                        >
+
+                            <div class="upload-icon">
+                                ⬆
+                            </div>
+
+                            <h3>
+                                Upload Learning Material
+                            </h3>
+
+                            <p>
+                                Upload PDF, DOCX or TXT material to
+                                generate a practice quiz.
+                            </p>
+
+                            <input
+                                type="file"
+                                id="materialFile"
+                                accept=".pdf,.doc,.docx,.txt"
+                                hidden
+                            >
+
+                            <button
+                                class="btn btn-outline"
+                                onclick="document.getElementById('materialFile').click()"
+                            >
+                                Choose File
+                            </button>
+
+                            <div
+                                class="file-success"
+                                id="fileName"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="generator-controls">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Number of Questions
+                                </label>
+
+                                <select id="questionCount">
+
+                                    <option value="5">
+                                        5 Questions
+                                    </option>
+
+                                    <option
+                                        value="10"
+                                        selected
+                                    >
+                                        10 Questions
+                                    </option>
+
+                                    <option value="15">
+                                        15 Questions
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Difficulty
+                                </label>
+
+                                <select id="difficulty">
+
+                                    <option value="Easy">
+                                        Easy
+                                    </option>
+
+                                    <option
+                                        value="Medium"
+                                        selected
+                                    >
+                                        Medium
+                                    </option>
+
+                                    <option value="Hard">
+                                        Hard
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-primary generate-btn"
+                            onclick="generateQuiz()"
+                        >
+                            ✨ Generate Quiz
+                        </button>
+
+
+                        <div class="demo-notice">
+
+                            AI Demo Mode — Document processing is simulated
+                            using sample statistical questions.
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="loader"
+                        id="quizLoader"
+                    >
+
+                        <div class="spinner"></div>
+
+                        <strong>
+                            AI is analyzing your learning material...
+                        </strong>
+
+                        <p>
+                            Identifying concepts and generating questions
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="generated-area"
+                        id="generatedQuiz"
+                    >
+
+                        <div class="page-heading">
+
+                            <div>
+
+                                <h2>
+                                    Generated MCQs
+                                </h2>
+
+                                <p id="generatedQuizInfo">
+                                    AI generated questions
+                                </p>
+
+                            </div>
+
+                            <span class="page-badge demo">
+                                Demo Generated
+                            </span>
+
+                        </div>
+
+
+                        <div id="quizQuestions"></div>
+
+
+                        <div class="submit-container">
+
+                            <button
+                                class="btn btn-primary btn-large"
+                                onclick="submitGeneratedQuiz()"
+                            >
+                                Submit Quiz
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="card result-panel"
+                            id="quizResult"
+                        >
+
+                            <div class="result-main">
+
+                                <div
+                                    class="score-circle"
+                                    id="quizScoreCircle"
+                                >
+                                    0%
+                                </div>
+
+                                <h2>
+                                    Quiz Result
+                                </h2>
+
+                                <p id="quizResultText">
+                                    Your result will appear here.
+                                </p>
+
+                            </div>
+
+
+                            <div class="result-section">
+
+                                <h3>
+                                    Answer Review
+                                </h3>
+
+                                <div
+                                    id="quizReview"
+                                    class="answer-review"
+                                ></div>
+
+                            </div>
+
+
+                            <div class="result-section">
+
+                                <h3>
+                                    Topic Performance
+                                </h3>
+
+                                <div class="performance-list">
+
+                                    <div class="performance-item">
+
+                                        <div class="performance-header">
+
+                                            <span>
+                                                Statistics
+                                            </span>
+
+                                            <strong>
+                                                85%
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="progress-track">
+
+                                            <div
+                                                class="progress-fill"
+                                                style="width:85%"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="performance-item">
+
+                                        <div class="performance-header">
+
+                                            <span>
+                                                Data Visualization
+                                            </span>
+
+                                            <strong>
+                                                78%
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="progress-track">
+
+                                            <div
+                                                class="progress-fill"
+                                                style="width:78%"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="performance-item">
+
+                                        <div class="performance-header">
+
+                                            <span>
+                                                Sampling
+                                            </span>
+
+                                            <strong>
+                                                65%
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="progress-track">
+
+                                            <div
+                                                class="progress-fill warning"
+                                                style="width:65%"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="performance-item">
+
+                                        <div class="performance-header">
+
+                                            <span>
+                                                Data Quality
+                                            </span>
+
+                                            <strong>
+                                                58%
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="progress-track">
+
+                                            <div
+                                                class="progress-fill warning"
+                                                style="width:58%"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="result-action">
+
+                                <button
+                                    class="btn btn-primary"
+                                    onclick="navigate('recommendations')"
+                                >
+                                    Improve Your Skills →
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     RECOMMENDATIONS
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="recommendations"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                Recommended for You
+                            </h2>
+
+                            <p id="recommendationSubtitle">
+                                AI-generated learning recommendations
+                                based on your competency profile.
+                            </p>
+
+                        </div>
+
+                        <span class="page-badge">
+                            Personalized
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="recommendation-grid"
+                        id="recommendationList"
+                    ></div>
+
+                </section>
+
+
+                <!-- =================================================
+                     LEARNING
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="learning"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                My Learning
+                            </h2>
+
+                            <p>
+                                Track your current learning journey.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="learning-grid">
+
+                        <div class="card learning-card">
+
+                            <div class="learning-icon">
+                                📋
+                            </div>
+
+                            <h3>
+                                Survey Methodology
+                            </h3>
+
+                            <p>
+                                Sampling, survey design and data collection.
+                            </p>
+
+                            <div class="learning-progress-header">
+
+                                <span>
+                                    Progress
+                                </span>
+
+                                <strong>
+                                    60%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track large">
+
+                                <div
+                                    class="progress-fill learning-bar"
+                                    data-progress="60"
+                                ></div>
+
+                            </div>
+
+                            <button
+                                class="btn btn-secondary full-btn"
+                                onclick="showToast('Learning module opened')"
+                            >
+                                Continue Learning
+                            </button>
+
+                        </div>
+
+
+                        <div class="card learning-card">
+
+                            <div class="learning-icon">
+                                📊
+                            </div>
+
+                            <h3>
+                                Data Visualization
+                            </h3>
+
+                            <p>
+                                Charts, dashboards and visual communication.
+                            </p>
+
+                            <div class="learning-progress-header">
+
+                                <span>
+                                    Progress
+                                </span>
+
+                                <strong>
+                                    80%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track large">
+
+                                <div
+                                    class="progress-fill learning-bar"
+                                    data-progress="80"
+                                ></div>
+
+                            </div>
+
+                            <button
+                                class="btn btn-secondary full-btn"
+                                onclick="showToast('Learning module opened')"
+                            >
+                                Continue Learning
+                            </button>
+
+                        </div>
+
+
+                        <div class="card learning-card">
+
+                            <div class="learning-icon">
+                                📈
+                            </div>
+
+                            <h3>
+                                Statistical Analysis
+                            </h3>
+
+                            <p>
+                                Descriptive and inferential statistical
+                                techniques.
+                            </p>
+
+                            <div class="learning-progress-header">
+
+                                <span>
+                                    Progress
+                                </span>
+
+                                <strong>
+                                    100%
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-track large">
+
+                                <div
+                                    class="progress-fill success learning-bar"
+                                    data-progress="100"
+                                ></div>
+
+                            </div>
+
+                            <button
+                                class="btn btn-success full-btn"
+                                onclick="showToast('Course completed ✓')"
+                            >
+                                Completed ✓
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ANALYTICS
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="analytics"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                Learning Analytics
+                            </h2>
+
+                            <p>
+                                Monitor competency development and
+                                quiz performance.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-grid">
+
+                        <div class="card chart-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <h3>
+                                        Learning Progress
+                                    </h3>
+
+                                    <p>
+                                        Overall competency growth
+                                    </p>
+
+                                </div>
+
+                                <span class="mini-badge">
+                                    4 Weeks
+                                </span>
+
+                            </div>
+
+
+                            <div class="bar-chart">
+
+                                <div class="chart-column">
+
+                                    <div
+                                        class="chart-bar"
+                                        data-value="52"
+                                    ></div>
+
+                                    <span>
+                                        Week 1
+                                    </span>
+
+                                </div>
+
+
+                                <div class="chart-column">
+
+                                    <div
+                                        class="chart-bar"
+                                        data-value="61"
+                                    ></div>
+
+                                    <span>
+                                        Week 2
+                                    </span>
+
+                                </div>
+
+
+                                <div class="chart-column">
+
+                                    <div
+                                        class="chart-bar"
+                                        data-value="68"
+                                    ></div>
+
+                                    <span>
+                                        Week 3
+                                    </span>
+
+                                </div>
+
+
+                                <div class="chart-column">
+
+                                    <div
+                                        class="chart-bar"
+                                        data-value="72"
+                                    ></div>
+
+                                    <span>
+                                        Week 4
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card chart-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <h3>
+                                        Quiz Performance
+                                    </h3>
+
+                                    <p>
+                                        Topic-wise accuracy
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="performance-list">
+
+                                <div class="performance-item">
+
+                                    <div class="performance-header">
+
+                                        <span>
+                                            Statistics
+                                        </span>
+
+                                        <strong>
+                                            85%
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill"
+                                            style="width:85%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div class="performance-header">
+
+                                        <span>
+                                            Data Visualization
+                                        </span>
+
+                                        <strong>
+                                            78%
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill"
+                                            style="width:78%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div class="performance-header">
+
+                                        <span>
+                                            Sampling
+                                        </span>
+
+                                        <strong>
+                                            65%
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill warning"
+                                            style="width:65%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div class="performance-header">
+
+                                        <span>
+                                            Data Quality
+                                        </span>
+
+                                        <strong>
+                                            58%
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="progress-track">
+
+                                        <div
+                                            class="progress-fill warning"
+                                            style="width:58%"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     IGOT
+                ================================================== -->
+
+                <section
+                    class="page"
+                    id="igot"
+                >
+
+                    <div class="page-heading">
+
+                        <div>
+
+                            <h2>
+                                iGOT Karmayogi
+                            </h2>
+
+                            <p>
+                                Government learning ecosystem integration.
+                            </p>
+
+                        </div>
+
+                        <span class="page-badge demo">
+                            Demo Data
+                        </span>
+
+                    </div>
+
+
+                    <div class="integration-banner">
+
+                        <div class="igot-header">
+
+                            <div class="igot-logo">
+                                iG
+                            </div>
+
+                            <div>
+
+                                <h2>
+                                    iGOT Karmayogi
+                                </h2>
+
+                                <p>
+                                    Integrated Government Online Training
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="integration-status">
+
+                            <span>●</span>
+
+                            Integration Status: Demo Mode
+
+                        </div>
+
+
+                        <p class="integration-description">
+
+                            Personalized training recommendations can be
+                            connected to the iGOT Karmayogi ecosystem through
+                            an approved integration. StatLearn AI can identify
+                            competency gaps and recommend relevant training
+                            resources.
+
+                        </p>
+
+
+                        <div class="demo-data-label">
+                            Demo Data
+                        </div>
+
+                    </div>
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Sample Training Courses
+                            </h2>
+
+                            <p>
+                                Example courses that could be surfaced
+                                through ecosystem integration.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="igot-course-grid">
+
+                        <div class="card course-card">
+
+                            <div class="course-icon">
+                                ✓
+                            </div>
+
+                            <h3>
+                                Statistical Data Quality Management
+                            </h3>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    Intermediate
+                                </span>
+
+                                <span>
+                                    4 Hours
+                                </span>
+
+                            </div>
+
+                            <p>
+                                Learn principles, dimensions and processes
+                                for improving statistical data quality.
+                            </p>
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="showToast('Demo training opened')"
+                            >
+                                View Training
+                            </button>
+
+                        </div>
+
+
+                        <div class="card course-card">
+
+                            <div class="course-icon">
+                                📊
+                            </div>
+
+                            <h3>
+                                Data Visualization for Public Data
+                            </h3>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    Intermediate
+                                </span>
+
+                                <span>
+                                    3 Hours
+                                </span>
+
+                            </div>
+
+                            <p>
+                                Build effective visualizations for
+                                communicating statistical information.
+                            </p>
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="showToast('Demo training opened')"
+                            >
+                                View Training
+                            </button>
+
+                        </div>
+
+
+                        <div class="card course-card">
+
+                            <div class="course-icon">
+                                📋
+                            </div>
+
+                            <h3>
+                                Survey Methodology Fundamentals
+                            </h3>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    Beginner
+                                </span>
+
+                                <span>
+                                    5 Hours
+                                </span>
+
+                            </div>
+
+                            <p>
+                                Understand sampling, questionnaire design
+                                and survey-data collection.
+                            </p>
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="showToast('Demo training opened')"
+                            >
+                                View Training
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
